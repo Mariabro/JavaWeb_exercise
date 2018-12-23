@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>各种事件</title>
+		<script type="text/javascript">
+		
+			//页面加载事件：当整个html页面加载成功调用
+			window.onload = function(){
+				
+				//文本事件
+				var e01 = document.getElementById("e01");
+				e01.onfocus = function(){
+					html("textMsg","文本框获得焦点：focus");
+				}
+				e01.onblur = function(){
+					html("textMsg","文本框失去焦点：blur");
+				}
+				e01.onkeydown = function(){
+					html("textMsg","键盘按下：keydown");
+				}
+				e01.onkeypress = function(){
+					append("textMsg","键盘按：keypress");
+				}
+				e01.onkeyup = function(){
+					append("textMsg","键盘弹起：keyup");
+				}
+				
+				//鼠标事件
+				var e02 = document.getElementById("e02");
+				var i = 0;
+				e02.onmouseover = function(){
+					html("divMsg","鼠标移上：mouseover");
+				}
+				e02.onmousemove = function(){
+					//html("divMsg","鼠标移动：mousemove," + i++);
+				}
+				e02.onmouseout = function(){
+					html("divMsg","鼠标移出：mouseout");
+				}
+				e02.onmousedown = function(){
+					html("divMsg","鼠标按下：mousedown");
+				}
+				e02.onmouseup = function(){
+					html("divMsg","鼠标弹起：mouseup");
+				}
+				
+				//按钮事件
+				var e03 = document.getElementById("e03");
+				e03.onclick = function(){
+					html("buttonMsg","单击：click");
+				}
+				e03.ondblclick = function(){
+					html("buttonMsg","双击：dbclick");
+				}
+				
+				/**
+				 * 指定位置显示指定信息
+				 * @param objId,元素的id属性值
+				 * @param text,需要显示文本信息
+				 */
+				function html(objId,text){
+					document.getElementById(objId).innerHTML = text;
+				}
+				
+				/**
+				 * 指定位置追加指定信息
+				 * @param objId,元素的id属性值
+				 * @param text,需要显示文本信息
+				 */
+				function append(objId,text){
+					document.getElementById(objId).innerHTML += text;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="e01" /><span id="textMsg"></span><br />
+		<hr />
+		<div id="e02" style="border:1px solid red;width: 100px;height: 200px;"></div><span id="divMsg"></span><br />
+		<hr />
+		<input type="button"  value="可以点击" id="e03"/><span id="buttonMsg"></span><br />
+	</body>
+</html>

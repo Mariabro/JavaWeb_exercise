@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>列表左右选择</title>
+	</head>
+	<body>
+		<table border="1" width="600" align="center">
+			<tr>
+				<td>
+					分类名称
+				</td>
+				<td>
+					<input type="text" name="cname" value="手机数码"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					分类描述
+				</td>
+				<td>
+					<textarea name="cdesc" rows="4" cols="20">手机数码类商品</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					分类商品
+				</td>
+				<td>
+					<span style="float: left;">
+						<font color="green" face="宋体">已有商品</font><br/>
+						<select id="leftSelect" multiple="multiple" style="width: 100px;height: 200px;">
+							<option>IPhone6s</option>
+							<option>小米4</option>
+							<option>锤子T2</option>
+						</select>
+						<p><a href="#" style="padding-left: 20px;" onclick="leftToRightOne()">&gt;</a></p>
+						<p><a href="#" style="padding-left: 20px;" onclick="leftToRightSelect()">&gt;&gt;</a></p>
+						<p><a href="#" style="padding-left: 20px;" onclick="leftToRightAll()">&gt;&gt;&gt;</a></p>
+					</span>
+					<span style="float: right;">
+						<font color="red" face="宋体">未有商品</font><br/>
+						<select id="rightSelect" multiple="multiple" style="width: 100px;height: 200px;">
+							<option>三星Note3</option>
+							<option>华为6s</option>
+						</select>
+						<p><a href="#" >&lt;</a></p>
+						<p><a href="#" >&lt;&lt;</a></p>
+						<p><a href="#" >&lt;&lt;&lt;</a></p>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type='submit' value="修改"/>
+				</td>
+			</tr>
+		</table>
+		<script>
+			/**
+			 * 此处使用childNodes获得所有节点，也可以使用<select>标签特有的属性options获得所有的<option>子标签
+			 */
+			function leftToRightOne(){
+				var leftSelect = document.getElementById("leftSelect");
+				var rightSelect = document.getElementById("rightSelect");
+//				alert(leftSelect.childNodes[1].nodeName);
+				for(var i=0;i<leftSelect.childNodes.length;i++){
+					if(leftSelect.childNodes[i].selected){
+						rightSelect.appendChild(leftSelect.childNodes[i]);
+						break;
+					}
+				}
+			}
+			
+			/**
+			 * leftSelct.childNodes.length最终长度为7，获得4个text文本，3个option
+			 * 元素：text、option[1]、text、option[2]、text、option[3]、text
+			 * 当遍历时，第一个option移除后，length变成了6，此时i==2,正好是第二个option
+			 * 移除第二个后，此时i=3，正好是第三个option，所以可以正常移动所有
+			 */
+			function leftToRightSelect(){
+				var leftSelect = document.getElementById("leftSelect");
+				var rightSelect = document.getElementById("rightSelect");
+//				alert(leftSelect.childNodes.length);
+//				console.log(leftSelect.childNodes)
+//				for(var i=0;i<leftSelect.childNodes.length;i++){
+//					alert(leftSelect.childNodes[i].nodeName);
+//				}
+				for(var i=0;i<leftSelect.childNodes.length;i++){
+					if(leftSelect.childNodes[i].selected){
+						rightSelect.appendChild(leftSelect.childNodes[i]);
+					}
+				}
+			}
+			
+			/**
+			 * 方式一：子元素和文本同时都移动
+			 */
+//			function leftToRightAll(){
+//				var leftSelect = document.getElementById("leftSelect");
+//				var rightSelect = document.getElementById("rightSelect");
+//				for(var i=0;i<leftSelect.childNodes.length;i++){
+//					rightSelect.appendChild(leftSelect.childNodes[i]);
+//					i--;//因为length是不断变化的，保证一直移除第一个
+//				}
+//			}
+			
+			/**
+			 * 方式二：length不断变化，i不需要变化
+			 */
+//			function leftToRightAll(){
+//				var leftSelect = document.getElementById("leftSelect");
+//				var rightSelect = document.getElementById("rightSelect");
+//				for(var i=0;i<leftSelect.childNodes.length;){
+//					rightSelect.appendChild(leftSelect.childNodes[i]);
+//					//因为length是不断变化的，保证一直移除第一个
+//				}
+//			}
+			/**
+			 * 方式三：采用倒序，不过右边内容也是倒序的
+			 */
+			function leftToRightAll(){
+				var leftSelect = document.getElementById("leftSelect");
+				var rightSelect = document.getElementById("rightSelect");
+				for(var i = leftSelect.childNodes.length-1;i>=0;i--){
+					rightSelect.appendChild(leftSelect.childNodes[i]);
+				}
+			}
+		</script>
+	</body>
+</html>

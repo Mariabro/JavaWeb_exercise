@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>阻止事件的传播</title>
+		<script type="text/javascript">
+			var e1 = document.getElementById("e1");
+			var e2 = document.getElementById("e2");
+			var e3 = document.getElementById("e3");
+			var e4 = document.getElementById("e4");
+			//设置“区域1”事件
+			function one(){
+				alert("e1");
+			}
+			function two(){
+				alert("e2,同时e1也触发");
+			}
+			//设置“区域2”事件
+			function three(){
+				alert("e3");
+			}
+			function four(event){
+				alert("e4,e3不触发");
+				var event = event || window.event;
+				event.stopPropagation();
+			}
+		</script>
+	</head>
+	<body>
+		<!--区域1-->
+		<div id="e1" style="width: 200px; height: 200px; background-color: #f00;" onclick="one()">
+			<div id="e2" style="width: 100px; height: 100px; background-color: #0f0;" onclick="two()"></div>
+		</div>
+		<hr />
+		<!--区域2-->
+		<div id="e3" style="width:200px; height: 200px; background-color: #f00;" onclick="three()">
+			<div id="e4" style="width: 100px; height: 100px;background-color: #0f0;" onclick="four(event)"></div>
+		</div>
+	</body>
+</html>

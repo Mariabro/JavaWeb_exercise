@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>反选</title>
+		<script>
+			function inverseSelect(){
+				//反选：如果选择就不选中，如果不选中就选中
+				var allCheckbox = document.getElementsByClassName("itemSelect");
+				for(var i=0;i<allCheckbox.length;i++){
+					allCheckbox[i].checked = !allCheckbox[i].checked;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<!--
+        	作者：1395974964@qq.com
+        	时间：2018-12-10
+        	描述：href:用于指定<a>跳转的位置。
+        		开发中为了阻止href所设置的位置，通常编写”javascript:void(0)“,void()函数参数任意数字都可以，习惯写成0
+        -->
+		<a href="javascript:void(0)" onclick="inverseSelect()">反选</a>
+		<table border="1" width="500" height="50" align="center" >
+			<thead>
+				<tr>
+					<td colspan="4">
+						<input type="button" value="添加" />
+						<input type="button" value="删除" />
+					</td>
+				</tr>
+				<tr>
+					<th><input type="checkbox" id="checkAll" onclick="inverseSelect()"/></th>
+					<th>编号</th>
+					<th>姓名</th>
+					<th>年龄</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr >
+					<td><input type="checkbox" name="checkOne" class="itemSelect"/></td>
+					<td>1</td>
+					<td>张三</td>
+					<td>22</td>
+				</tr>
+				<tr >
+					<td><input type="checkbox" name="checkOne" class="itemSelect"/></td>
+					<td>2</td>
+					<td>李四</td>
+					<td>25</td>
+				</tr>
+				<tr >
+					<td><input type="checkbox" name="checkOne" class="itemSelect"/></td>
+					<td>3</td>
+					<td>王五</td>
+					<td>27</td>
+				</tr>
+				<tr >
+					<td><input type="checkbox" name="checkOne" class="itemSelect"/></td>
+					<td>4</td>
+					<td>赵六</td>
+					<td>29</td>
+				</tr>
+				<tr >
+					<td><input type="checkbox" name="checkOne" class="itemSelect"/></td>
+					<td>5</td>
+					<td>田七</td>
+					<td>30</td>
+				</tr>
+				<tr >
+					<td><input type="checkbox" name="checkOne" class="itemSelect"/></td>
+					<td>6</td>
+					<td>汾九</td>
+					<td>20</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

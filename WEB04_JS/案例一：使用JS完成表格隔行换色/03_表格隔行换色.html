@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>表格隔行换色</title>
+		<script>
+			window.onload = function(){
+				var allTr = document.getElementsByTagName("tr");
+				//跳过前2行
+				for(var i=1;i<allTr.length;i++){
+					//给行设置背景颜色，奇数行白色，偶数行指定颜色
+					if(i%2==0){
+						allTr[i].style.backgroundColor="#FFF";
+					}else{
+						allTr[i].style.backgroundColor="#4E7FD1";
+					}
+					/**添加事件，鼠标移上和移出，背景色改变。。
+					 *使用自定义属性”bgc“缓存当前行自己原来的颜色
+					 */
+					allTr[i].onmouseover = function(){
+						this.setAttribute("bgc",this.style.backgroundColor);
+						this.style.backgroundColor="#A0B9E1"
+					}
+					allTr[i].onmouseout = function(){
+						this.style.backgroundColor=this.getAttribute("bgc");
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<table border="1" width="500" height="50" align="center" id="tbl" >
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>姓名</th>
+					<th>年龄</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr >
+					<td>1</td>
+					<td>张三</td>
+					<td>22</td>
+				</tr>
+				<tr >
+					<td>2</td>
+					<td>李四</td>
+					<td>25</td>
+				</tr>
+				<tr >
+					<td>3</td>
+					<td>王五</td>
+					<td>27</td>
+				</tr>
+				<tr >
+					<td>4</td>
+					<td>赵六</td>
+					<td>29</td>
+				</tr>
+				<tr >
+					<td>5</td>
+					<td>田七</td>
+					<td>30</td>
+				</tr>
+				<tr >
+					<td>6</td>
+					<td>汾九</td>
+					<td>20</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

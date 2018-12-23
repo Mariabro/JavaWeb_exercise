@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>使用jQuery完成表格隔行换色</title>
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../js/jquery-1.8.3.js" ></script>
+		<script>
+			$(document).ready(function(){
+				//数据展示中，偶数行的颜色设置成#FFFAE8
+				$("tr:gt(1):even").css("backgroundColor","#FFFAE8");
+				
+				//鼠标移上和移除变色E8DFC4
+				$("tr:gt(0)").mouseover(function(){
+					//记录之前的颜色
+					$(this).attr("bgc",$(this).css("backgroundColor"));
+					//设置移上背景色
+					$(this).css("backgroundColor","#E8DFC4");
+				}).mouseout(function(){
+					//获得之前记录的背景色
+					var bgc = $(this).attr("bgc");
+					//设置移除后之前的颜色
+					$(this).css("backgroundColor",bgc);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<table border="1" width="500" height="50" align="center" id="tbl" id="tbl">
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>姓名</th>
+					<th>年龄</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr >
+					<td>1</td>
+					<td>张三</td>
+					<td>22</td>
+				</tr>
+				<tr >
+					<td>2</td>
+					<td>李四</td>
+					<td>25</td>
+				</tr>
+				<tr >
+					<td>3</td>
+					<td>王五</td>
+					<td>27</td>
+				</tr>
+				<tr >
+					<td>4</td>
+					<td>赵六</td>
+					<td>29</td>
+				</tr>
+				<tr >
+					<td>5</td>
+					<td>田七</td>
+					<td>30</td>
+				</tr>
+				<tr >
+					<td>6</td>
+					<td>汾九</td>
+					<td>20</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

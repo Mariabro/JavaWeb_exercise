@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>阻止浏览器默认行为</title>
+		<script type="text/javascript">
+			function one(){
+				alert("我之后，黑马官网继续访问");
+			}
+			
+			function two(event){
+				alert("我之后，传智官网不再访问");
+				//方式一
+				//return false;
+				//方式二：
+				var event = event || window.event;
+				event.preventDefault();
+			}
+		</script>
+	</head>
+	<body>
+		<a href="http://www.itheima.com" onclick="one()">黑马程序员</a><br />
+		<a href="http://www.itcast.cn" onclick="return two(event)">传智播客</a>
+	</body>
+</html>
