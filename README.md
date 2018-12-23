@@ -1,2 +1,2 @@
 # JavaWeb_exercise
-JavaWeb开发
+JavaWeb相关练习
